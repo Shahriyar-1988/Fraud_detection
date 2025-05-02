@@ -1,0 +1,12 @@
+pandas
+numpy
+scikit-learn
+matplotlib
+mlflow
+joblib 
+python-box
+pyYAML
+tqdm
+ensure
+joblib
+dotenv

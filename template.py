@@ -20,7 +20,7 @@ list_of_files=[
     f"src/entity/__init__.py",
     f"src/entity/config_entity.py",
     f"src/constants/__init__.py",
-    "config/config.yaml",
+    "config.yaml",
     "params.yaml",
     "schema.yaml",
     "main.py",

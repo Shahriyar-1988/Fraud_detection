@@ -1,7 +1,7 @@
 import os
 from src.utils.common import read_yaml,create_directories
 from src.constants import *
-from src.entity.config_entity import DataIngestionConfig
+from src.entity.config_entity import DataIngestionConfig, DataTransformationConfig
 
 class ConfigurationManager:
     def __init__(self, config_file_path=CONFIG_FILE_PATH,
@@ -21,6 +21,19 @@ class ConfigurationManager:
 
         ) 
         return data_ingestion_config  
+    def get_data_transformation_config(self)-> DataTransformationConfig:
+        config=self.config.data_transformation
+        schema=self.schema.TARGET_COLUMN
+        create_directories([config.root_directory])
+        data_transformation_config=DataTransformationConfig(
+            root_directory=config.root_directory,
+            data_directory=config.data_directory,
+            drop_columns=config.drop_columns,
+            target_col=schema
+        )
+        return data_transformation_config
+    
+
 
 
 

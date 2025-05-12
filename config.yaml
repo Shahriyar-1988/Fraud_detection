@@ -5,4 +5,36 @@ data_ingestion:
   data_url: "https://www.kaggle.com/datasets/vagifa/ethereum-frauddetection-dataset"
   local_data_path: artifacts/data_ingestion
 
+data_transformation:
+  root_directory: artifacts/data_transformation
+  data_directory: artifacts\data_ingestion\transaction_dataset.csv
+  drop_columns: ["unnamed:_0","index",
+    'erc20_avg_time_between_sent_tnx',
+    'erc20_avg_time_between_rec_tnx',
+    'erc20_avg_time_between_rec_2_tnx',
+    'erc20_avg_time_between_contract_tnx',
+    'erc20_min_val_sent_contract',
+    'erc20_max_val_sent_contract',
+    'erc20_avg_val_sent_contract',
+    'erc20_most_rec_token_type',
+    'erc20_most_sent_token_type',
+    'address',
+    'erc20_uniq_sent_addr.1',
+    'erc20_total_ether_sent',
+    'total_erc20_tnxs',
+    'erc20_total_ether_received',
+    'erc20_uniq_rec_contract_addr',
+    'erc20_uniq_sent_token_name',
+    'erc20_max_val_sent', 
+    'erc20_avg_val_sent',
+    'erc20_uniq_rec_addr',
+    'erc20_total_ether_sent_contract',
+    'total_ether_sent_contracts',
+    'min_value_sent_to_contract', 'max_val_sent_to_contract',
+    'avg_value_sent_to_contract',
+    'avg_val_sent',
+    'max_value_received',
+    'received_tnx']
+
+
 

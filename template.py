@@ -24,7 +24,6 @@ list_of_files=[
     "params.yaml",
     "schema.yaml",
     "main.py",
-    "notebooks/test_file.ipynb",
     "notebooks/EDA.ipynb"
 ]
 

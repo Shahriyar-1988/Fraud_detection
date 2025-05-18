@@ -16,7 +16,6 @@ data_transformation:
     'erc20_min_val_sent_contract',
     'erc20_max_val_sent_contract',
     'erc20_avg_val_sent_contract',
-    'erc20_most_rec_token_type',
     'erc20_most_sent_token_type',
     'address',
     'erc20_uniq_sent_addr.1',
@@ -35,6 +34,20 @@ data_transformation:
     'avg_val_sent',
     'max_value_received',
     'received_tnx']
+
+training:
+  root_directory: artifacts/model_training
+  train_data_path: artifacts/data_transformation/train.csv
+  model_directory: artifacts/model_training/models
+  metrics_directory: artifacts/metrics
+  model_name: model.joblib
+
+evaluation:
+  test_data_path: artifacts\data_transformation\test.csv
+  tree_model_path: artifacts\model_training\models\ExtraTree_model.joblib
+  knn_model_path: artifacts\model_training\models\KNNClassifier_model.joblib
+  metric_file_path: artifacts/metrics
+   
 
 
 

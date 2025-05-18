@@ -1,2 +1,3 @@
 Columns: "Data validation was not applied in this project"
 TARGET_COLUMN: "flag"
+ENCODING_COLUMN : "erc20_most_rec_token_type"

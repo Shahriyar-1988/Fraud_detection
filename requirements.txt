@@ -10,5 +10,6 @@ tqdm
 ensure
 joblib
 dotenv
-kaggle
+kagglehub
 ipykernel
+imblearn

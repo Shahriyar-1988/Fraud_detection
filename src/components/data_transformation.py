@@ -1,8 +1,9 @@
-import sys
-import os
+# Activate only when testing this code individually
+# import sys
+# import os
 
-# ✅ Fix path so that 'src' can be imported properly
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+# # ✅ Fix path so that 'src' can be imported properly
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 
 import pandas as pd
@@ -22,13 +23,16 @@ class DataTransformation:
     def data_transformer(self):
         data=pd.read_csv(self.config.data_directory)
         data.columns=[col.strip().lower().replace(" ","_") for col in data.columns]
-        encoder=TargetEncoder()
-        data=encoder.fit_transform(data)
         data=data.drop(self.config.drop_columns,axis=1)
         return data
     def train_test_splitter(self):
         data=self.data_transformer()
         train_data, test_data = train_test_split(data,test_size=0.2,stratify=data[self.schema.TARGET_COLUMN])
+        encoder=TargetEncoder()
+        train_data=encoder.fit_transform(train_data)
+        test_data=encoder.transform(test_data)
+        train_data=train_data.drop(self.schema.ENCODING_COLUMN,axis=1)
+        test_data=test_data.drop(self.schema.ENCODING_COLUMN,axis=1)
         train_data.to_csv(os.path.join(self.config.root_directory,"train.csv"),index=False)
         test_data.to_csv(os.path.join(self.config.root_directory,"test.csv"),index=False)
         logger.info("Data splitted into training and test sets")
@@ -36,10 +40,10 @@ class DataTransformation:
         logger.info(f" Test data size: {test_data.shape}")
 
 class TargetEncoder(BaseEstimator, TransformerMixin):
-    def __init__(self,token_col:str="erc20_most_rec_token_type",
+    def __init__(self,token_col:str,
                  output_col: str = "erc20_rec_token_risk"):
         self.schema=read_yaml(SCHEMA_FILE_PATH)
-        self.token_col = token_col
+        self.token_col = self.schema.ENCODING_COLUMN
         self.target_col = self.schema.TARGET_COLUMN
         self.output_col = output_col
         self.token_risk_scores_ = None

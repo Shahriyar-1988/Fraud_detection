@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import pandas as pd
-from src.config.configuration import ModelEvaluationConfig
+from src.entity.config_entity import ModelEvaluationConfig
 import joblib
 import mlflow
 from src import logger
